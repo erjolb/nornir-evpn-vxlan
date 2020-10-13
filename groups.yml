@@ -1,0 +1,8 @@
+junos:
+  platform: junos
+  username: ebane
+  connection_options:
+    netconf:
+      extras:
+        allow_agent: True
+        hostkey_verify: False
