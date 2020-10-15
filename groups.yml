@@ -6,3 +6,23 @@ junos:
       extras:
         allow_agent: True
         hostkey_verify: False
+  data:
+    gateway: 192.168.122.1
+evpn:
+  data:
+    site: gns3
+    rr_asn: 65000
+spines:
+  groups:
+    - junos
+    - evpn
+  data:
+    role: spine
+    ecmp: True
+leaves:
+  groups:
+    - junos
+    - evpn
+  data:
+    role: leaf
+    ecmp: True
