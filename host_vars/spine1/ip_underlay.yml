@@ -1,0 +1,28 @@
+bgp:
+  - name: Underlay
+    description: '"IP Fabric Underlay"'
+    local_as: 65002
+    type: external
+    hold_time: 10
+    family:
+      inet: unicast
+    multipath: multiple-as
+    import:
+      - in-reject-defaultroute
+      - ACCEPT
+    export:
+      - out-accept-loopback
+    #   - REJECT
+    neighbors:
+      - ip: 10.254.254.2
+        peer_as: 65001
+        description: spine1
+      - ip: 10.249.249.2
+        peer_as: 65101
+        description: leaf1
+      - ip: 10.244.244.2
+        peer_as: 65102
+        description: leaf2
+      - ip: 10.239.239.2
+        peer_as: 65103
+        description: leaf3

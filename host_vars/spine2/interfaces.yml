@@ -1,0 +1,5 @@
+interfaces:
+  lo0:
+    description: router_id
+    unit: 0
+    ipv4: 10.0.0.12/32

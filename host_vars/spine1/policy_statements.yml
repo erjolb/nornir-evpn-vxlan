@@ -1,0 +1,38 @@
+policy_statements:
+  ACCEPT:
+    then: accept
+  REJECT:
+    then: reject
+  in-reject-defaultroute:
+    - name: ipv4
+      from:
+        - family inet
+        - route-filter 0.0.0.0/0 exact
+      then: 
+        - reject
+    - name: ipv6
+      from:
+        - family inet6
+        - route-filter ::/0 exact
+      then: 
+        - reject
+    - name: default
+      then: 
+        - next policy
+  out-accept-loopback:
+    - name: Term1
+      from: 
+        - protocol direct
+        - route-filter 10.0.0.12/32 exact
+      then: 
+        - accept
+    - name: default
+      then: 
+        - next policy
+  out-ecmp-forwarding-table:
+    - name: Term1
+      then:
+        - load-balance per-packet
+    - name: default
+      then:
+        - next policy
